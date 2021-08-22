@@ -11,8 +11,11 @@ var firebaseConfig = {
   measurementId: "G-QZJ3WXLTD5",
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
 export function login({ email, password }) {
   firebase.auth().signInWithEmailAndPassword(email, password);
 }

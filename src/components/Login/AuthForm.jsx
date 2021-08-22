@@ -7,48 +7,55 @@ import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 function AuthForm(props) {
-  state = {
+  const state = {
     user: "",
   };
 
-  signUp = (
-    <Button
-      backgroundColor="transparent"
-      color="#838383"
-      buttonStyle={styles.switchButton}
-      onPress={() => props.switchAuthMode()}
-      title="Sign Up"
-    />
-  );
+  // const signUp = () => {
+  //   return (
+  //     <View>
+  //       <Button
+  //         backgroundColor="transparent"
+  //         color="#838383"
+  //         buttonStyle={styles.switchButton}
+  //         onPress={() => props.switchAuthMode()}
+  //         title="Sign Up"
+  //       />
+  //     </View>
+  //   );
+  // };
 
-  displayNameInput = (
-    <View>
-      <TextInput
-        style={styles.formInput}
-        onChangeText={(text) => props.setFieldValue("displayName", text)}
-        placeholder="Display Name"
-      />
-    </View>
-  );
+  const displayNameInput = () => {
+    return (
+      <View>
+        <TextInput
+          style={styles.formInput}
+          onChangeText={(text) => props.setFieldValue("displayName", text)}
+          placeholder="Display Name"
+        />
+      </View>
+    );
+  };
 
-  avatar = (
-    <View>
-      <TouchableOpacity
-        onPress={() => {
-          handlePickAvatar;
-        }}
-        style={styles.avatarPlaceholder}
-      >
-        <Image source={state.user.avatar} style={styles.avatar} />
-        <Ionicons name="ios-add" size={40} color="#fff"></Ionicons>
-      </TouchableOpacity>
-    </View>
-  );
+  // avatar = (
+  //   <View>
+  //     <TouchableOpacity
+  //       onPress={() => {
+  //         handlePickAvatar;
+  //       }}
+  //       style={styles.avatarPlaceholder}
+  //     >
+  //       <Image source={state.user.avatar} style={styles.avatar} />
+  //       <Ionicons name="ios-add" size={40} color="#fff"></Ionicons>
+  //     </TouchableOpacity>
+  //   </View>
+  // );
 
   return (
     <View style={styles.container}>
+      <Text>LRHS Dating</Text>
       <Image
-        style={{ width: "100%", height: 150 }}
+        style={{ width: 150, height: 150 }}
         source={require("../../../assets/logo.png")}
       />
       <View style={styles.login}>
@@ -65,7 +72,6 @@ function AuthForm(props) {
           onChangeText={(text) => props.setFieldValue("password", text)}
           placeholder="Password:"
         />
-        {props.authMode === "signup" ? radioButton : null}
 
         <Button
           onPress={() => props.handleSubmit()}
@@ -74,12 +80,12 @@ function AuthForm(props) {
         />
         <View style={styles.signup}>
           <Text> Dont have an account?</Text>
-          <TouchableOpacity
+          <Text
             style={styles.switchButton}
             onPress={() => props.switchAuthMode()}
           >
             Sign Up
-          </TouchableOpacity>
+          </Text>
         </View>
       </View>
     </View>
@@ -150,7 +156,6 @@ export default withFormik({
     email: "",
     password: "",
     displayName: "",
-    value: "",
   }),
   validationSchema: (props) =>
     yup.object().shape({
